@@ -1,0 +1,50 @@
+CREATE TABLE CONDUCTOR(
+idConductor INT PRIMARY KEY AUTO_INCREMENT,
+licencia VARCHAR(20) NOT NULL,
+Vehiculo_idVehiculo INT,
+FOREIGN KEY (Vehiculo_idVehiculo) REFERENCES VEHICULO(idVehiculo)
+);
+
+CREATE TABLE VEHICULO(
+idVehiculo INT PRIMARY KEY AUTO_INCREMENT,
+tipo TINYINT NOT NULL,
+modelo VARCHAR(45) NULL,
+anio VARCHAR(45) NOT NULL,
+capacidad INT NOT NULL
+);
+
+CREATE TABLE USUARIO(
+idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+correo VARCHAR(45) NOT NULL,
+contrasena VARCHAR(45)NOT NULL,
+nombre VARCHAR(45) NOT NULL,
+fecha_nacimiento DATE NOT NULL
+);
+
+CREATE TABLE SERVICIO(
+idServicio INT PRIMARY KEY AUTO_INCREMENT,
+tarifa NUMERIC(5,2) NOT NULL,
+descripcion VARCHAR(45)NOT NULL,
+capacidad INT NOT NULL
+);
+
+CREATE TABLE VIAJE(
+idViaje INT PRIMARY KEY AUTO_INCREMENT,
+servicio_idServicio INT NOT NULL,
+distancia_recorrida NUMERIC(6,2) NOT NULL,
+duracion TIME NOT NULL,
+total NUMERIC(6,2) NOT NULL,
+vehiculo_idVehiculo INT NOT NULL,
+FOREIGN KEY (servicio_idServicio) REFERENCES SERVICIO(idServicio),
+FOREIGN KEY (Vehiculo_idVehiculo) REFERENCES VEHICULO(idVehiculo)
+);
+
+CREATE TABLE VIAJE_HAS_USUARIO(
+idViajeUsuario INT PRIMARY KEY AUTO_INCREMENT,
+viaje_idViaje INT NOT NULL,
+usuario_idUsuario INT NOT NULL,
+subtotal NUMERIC(6,2) NOT NULL,
+FOREIGN KEY (viaje_idViaje) REFERENCES VIAJE(idViaje),
+FOREIGN KEY (usuario_idUsuario) REFERENCES USUARIO(idUsuario)
+);
+
