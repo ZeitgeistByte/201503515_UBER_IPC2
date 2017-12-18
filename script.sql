@@ -37,5 +37,5 @@ metodo_pago VARCHAR(45),
 CONSTRAINT fk_Servicio FOREIGN KEY(Servicio_idSerivicio) REFERENCES Servicio(idServicio)
 );
 
-ALTER TABLE conductor ADD COLUMN (anios_experiencia INT NOT NULL);+
+ALTER TABLE conductor ADD COLUMN (anios_experiencia INT NOT NULL);
 ALTER TABLE vehiculo MODIFY COLUMN modelo INT NOT NULL;
